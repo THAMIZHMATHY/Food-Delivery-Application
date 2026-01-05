@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu | GourmetExpress | Premium Chennai Dining</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF5252;
+            --secondary: #2D3436;
+            --accent: #FFD93D;
+            --bg-dark: #0F0F0F;
+            --card-bg: #1A1A1A;
+            --text-main: #FFFFFF;
+            --text-dim: #A0A0A0;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        /* --- Navigation Bar --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(15, 15, 15, 0.8);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .nav-links .cart-btn {
+            background: var(--primary);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(255, 82, 82, 0.3);
+            color: white;
+        }
+
+        .nav-links .cart-btn:hover {
+            background: #ff3333;
+            box-shadow: 0 6px 20px rgba(255, 82, 82, 0.5);
+        }
+
+        /* --- Menu Hero --- */
+        .menu-hero {
+            padding: 12rem 5% 4rem;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(15, 15, 15, 1)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+
+        .menu-hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #ff5252);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .menu-hero p {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- Container & Grid --- */
+        .container {
+            padding: 4rem 5% 8rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            position: relative;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        /* --- Menu Card --- */
+        .menu-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(255, 82, 82, 0.1);
+        }
+
+        .card-img-container {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .menu-card:hover .card-img {
+            transform: scale(1.1);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .rating {
+            background: #2ECC71;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            margin-bottom: 1.5rem;
+            height: 60px;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .add-to-cart {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-to-cart:hover {
+            background: #ff3333;
+            transform: scale(1.05);
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 4rem 5%;
+            background: #080808;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+            color: var(--text-dim);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .menu-hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">
+            <i class="fas fa-utensils"></i> GourmetExpress
+        </a>
+        <div class="nav-links">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="menu.html" class="active"><i class="fas fa-utensils"></i> Menu</a>
+            <a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i> Cart (0)</a>
+            <a href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
+        </div>
+    </nav>
+
+    <header class="menu-hero">
+        <div class="hero-content">
+            <h1>Our Exquisite Menu</h1>
+            <p>Savor the finest selection of global cuisines, curated for the discerning palate.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="section-header">
+            <h2>Chef's Recommendations</h2>
+            <div class="filter-btns">
+                <button class="filter-btn active" data-filter="all">All Items</button>
+            </div>
+        </div>
+
+        <div class="menu-grid">
+            <!-- 1. Classic Margherita Pizza -->
+            <div class="menu-card">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80"
+                        alt="Classic Margherita Pizza" class="card-img">
+                    <div class="card-badge">Bestseller</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Classic Margherita Pizza</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.8</div>
+                    </div>
+                    <p class="card-desc">San Marzano tomatoes, fresh mozzarella, organic basil, and extra virgin olive
+                        oil on wood-fired crust.</p>
+                    <div class="card-footer">
+                        <span class="price">₹599</span>
+                        <button class="add-to-cart"><i class="fas fa-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Truffle Mushroom Risotto -->
+            <div class="menu-card">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&fit=crop&w=800&q=80"
+                        alt="Truffle Mushroom Risotto" class="card-img">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Truffle Mushroom Risotto</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.9</div>
+                    </div>
+                    <p class="card-desc">Creamy Arborio rice with wild mushrooms, finished with black truffle oil and
+                        24-month aged Parmesan.</p>
+                    <div class="card-footer">
+                        <span class="price">₹849</span>
+                        <button class="add-to-cart"><i class="fas fa-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Spicy Tuna Roll -->
+            <div class="menu-card">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80"
+                        alt="Spicy Tuna Roll" class="card-img">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Spicy Tuna Roll</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                    <p class="card-desc">Sashimi-grade tuna, spicy mayo, cucumber, and scallions. Served with pickled
+                        ginger and wasabi.</p>
+                    <div class="card-footer">
+                        <span class="price">₹649</span>
+                        <button class="add-to-cart"><i class="fas fa-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Grilled Ribeye Steak -->
+            <div class="menu-card">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80"
+                        alt="Grilled Ribeye Steak" class="card-img">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Grilled Ribeye Steak</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.9</div>
+                    </div>
+                    <p class="card-desc">Prime dry-aged ribeye, herb-infused butter, roasted garlic mash, and seasonal
+                        charred vegetables.</p>
+                    <div class="card-footer">
+                        <span class="price">₹1,499</span>
+                        <button class="add-to-cart"><i class="fas fa-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Butter Chicken -->
+            <div class="menu-card">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1426869981800-95ebf51ce900?auto=format&fit=crop&w=800&q=80"
+                        alt="Butter Chicken" class="card-img">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Butter Chicken</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.8</div>
+                    </div>
+                    <p class="card-desc">Tender tandoori chicken in a rich, velvety tomato and butter gravy with
+                        aromatic spices.</p>
+                    <div class="card-footer">
+                        <span class="price">₹749</span>
+                        <button class="add-to-cart"><i class="fas fa-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Signature Wagyu Burger -->
+            <div class="menu-card">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
+                        alt="Signature Wagyu Burger" class="card-img">
+                    <div class="card-badge">Premium</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Signature Wagyu Burger</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.6</div>
+                    </div>
+                    <p class="card-desc">Wagyu beef patty, caramelized onions, gruyère cheese, and truffle aioli on a
+                        toasted brioche bun.</p>
+                    <div class="card-footer">
+                        <span class="price">₹999</span>
+                        <button class="add-to-cart"><i class="fas fa-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. Quinoa Power Bowl -->
+            <div class="menu-card">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80"
+                        alt="Quinoa Power Bowl" class="card-img">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Quinoa Power Bowl</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.5</div>
+                    </div>
+                    <p class="card-desc">Organic quinoa, roasted sweet potatoes, avocado, kale, and lemon-tahini
+                        dressing.</p>
+                    <div class="card-footer">
+                        <span class="price">₹599</span>
+                        <button class="add-to-cart"><i class="fas fa-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Lobster Thermidor -->
+            <div class="menu-card">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"
+                        alt="Lobster Thermidor" class="card-img">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Lobster Thermidor</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.9</div>
+                    </div>
+                    <p class="card-desc">Fresh Atlantic lobster tails in a creamy cognac-spiked mustard sauce, topped
+                        with herb gratin.</p>
+                    <div class="card-footer">
+                        <span class="price">₹1,799</span>
+                        <button class="add-to-cart"><i class="fas fa-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. Lamb Kofta Kebab -->
+            <div class="menu-card">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=800&q=80"
+                        alt="Lamb Kofta Kebab" class="card-img">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Lamb Kofta Kebab</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                    <p class="card-desc">Spiced ground lamb skewers served with saffron rice, grilled tomatoes, and mint
+                        chutney.</p>
+                    <div class="card-footer">
+                        <span class="price">₹799</span>
+                        <button class="add-to-cart"><i class="fas fa-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. Chocolate Lava Cake -->
+            <div class="menu-card">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80"
+                        alt="Chocolate Lava Cake" class="card-img">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Chocolate Lava Cake</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.9</div>
+                    </div>
+                    <p class="card-desc">Warm Belgian chocolate cake with a molten center, served with Madagascan
+                        vanilla bean ice cream.</p>
+                    <div class="card-footer">
+                        <span class="price">₹449</span>
+                        <button class="add-to-cart"><i class="fas fa-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11. Street-Style Tacos -->
+            <div class="menu-card">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=80"
+                        alt="Street-Style Tacos" class="card-img">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Street-Style Tacos</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.5</div>
+                    </div>
+                    <p class="card-desc">Handmade corn tortillas with slow-roasted meat, fresh cilantro, onions, and
+                        zesty salsa verde.</p>
+                    <div class="card-footer">
+                        <span class="price">₹549</span>
+                        <button class="add-to-cart"><i class="fas fa-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 12. Authentic Tonkotsu Ramen -->
+            <div class="menu-card">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=800&q=80"
+                        alt="Authentic Tonkotsu Ramen" class="card-img">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Authentic Tonkotsu Ramen</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.6</div>
+                    </div>
+                    <p class="card-desc">Rich 48-hour pork bone broth, tender chashu pork, marinated egg, and springy
+                        handmade noodles.</p>
+                    <div class="card-footer">
+                        <span class="price">₹799</span>
+                        <button class="add-to-cart"><i class="fas fa-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 GourmetExpress. All Rights Reserved. Crafted for Taste.</p>
+    </footer>
+
+    <script>
+        // Simple cart notification
+        const cartButtons = document.querySelectorAll('.add-to-cart');
+        let cartCount = 0;
+        const cartBtn = document.querySelector('.cart-btn');
+
+        cartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                cartCount++;
+                cartBtn.innerHTML = `<i class="fas fa-shopping-cart"></i> Cart (${cartCount})`;
+
+                // Visual feedback
+                button.innerHTML = '<i class="fas fa-check"></i> Added';
+                button.style.background = '#2ECC71';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-plus"></i> Add to Cart';
+                    button.style.background = 'var(--primary)';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+
+</html>
