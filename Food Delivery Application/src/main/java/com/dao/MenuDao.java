@@ -10,7 +10,7 @@ public interface MenuDao {
     void updateMenu(Menu m);
     void deleteMenu(int id);
     List<Menu> getAllMenu();
-    List<Menu> getMenuByRestaurantId(int restaurantId);
+    List<Menu> getMenuByRestaurantId(int restaurantId);//to get by id
 
 
 }
