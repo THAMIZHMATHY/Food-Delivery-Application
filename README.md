@@ -122,6 +122,31 @@ Deployment on cloud server
 
 ---
 
+## 📸 Screenshots
+
+### 🏠 Home Page
+![Home Page](screenshots/01-home.png)
+
+### 📋 Menu Page
+![Menu Page](screenshots/02-menu.png)
+
+### 🛒 Cart Page
+![Cart Page](screenshots/03-cart.png)
+
+### 🔐 Login Page
+![Login Page](screenshots/04-login.png)
+
+### 📝 Register Page
+![Register Page](screenshots/05-register.png)
+
+### 💳 Checkout Page
+![Checkout Page](screenshots/06-checkout.png)
+
+### ✅ Order Placed
+![Order Placed](screenshots/07-orders.png)
+
+---
+
 ✨ Feel free to fork, star, or contribute!
 
 
