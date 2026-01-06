@@ -136,7 +136,7 @@ Deployment on cloud server
 ![Login Page](screenshots/04-login.png)
 
 ### 📝 Register Page
-![Register Page](screenshots/05-register.png)
+![Register Page](screenshots/05-register.png) 
 
 ### 💳 Checkout Page
 ![Checkout Page](screenshots/06-checkout.png)
