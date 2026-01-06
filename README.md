@@ -51,19 +51,19 @@ This project simulates a real-world food ordering platform with user authenticat
 🗂️ Project Structure
 
 Food-Delivery-Application
-│
-├── src/main/java
-│ ├── com.model
-│ ├── com.dao
-│ ├── com.daoimplementation
-│ └── com.servlets
-│
-├── src/main/webapp
-│ ├── images
-│ ├── *.jsp
-│ └── *.html
-│
-└── README.md
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       ├── model
+│   │   │       ├── dao
+│   │   │       ├── daoimplementation
+│   │   │       └── servlets
+│   │   └── webapp
+│   │       ├── images
+│   │       ├── jsp
+│   │       └── html
+├── README.md
 
 
 ---
