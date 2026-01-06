@@ -125,7 +125,7 @@ Deployment on cloud server
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-![Home Page](C:\Users\thami\Pictures\Screenshots)
+![Home Page](screenshots/01-home.png)
 
 ### 📋 Menu Page
 ![Menu Page](screenshots/02-menu.png)
