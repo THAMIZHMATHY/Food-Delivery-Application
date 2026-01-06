@@ -121,7 +121,6 @@ Online payment gateway
 Deployment on cloud server
 
 ---
-
 ## 📸 Screenshots
 
 ### 🏠 Home Page
@@ -142,8 +141,9 @@ Deployment on cloud server
 ### 💳 Checkout Page
 ![Checkout Page](screenshots/06-checkout.png)
 
-### ✅ Order Placed
-![Order Placed](screenshots/07-orders.png)
+### 📦 Orders Page
+![Orders Page](screenshots/07-orders.png)
+
 
 ---
 
